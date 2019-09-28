@@ -19,8 +19,8 @@ import com.grinngotts.service.UserService;
 @RequestMapping("/api/user")
 @CrossOrigin
 public class UserController {
-@Autowired
- UserService service;
+//@Autowired
+ UserService service = new UserService();
  
  @RequestMapping(value="{username}/login", method=RequestMethod.GET, produces="application/json" )
  public ResponseEntity<UserDTO> logIn(@PathVariable String username) {
