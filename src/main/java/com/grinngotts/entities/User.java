@@ -1,11 +1,13 @@
 package com.grinngotts.entities;
 
 import java.sql.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,7 +20,7 @@ import javax.persistence.Table;
 public class User {
  @Id
  private String username;
- @Column(nullable = false)
+ @Column(nullable = false)   //
  private String password;
  @Column(nullable = false)
  private int userType;
@@ -26,6 +28,8 @@ public class User {
  private String email;
  @Column(nullable = false)
  private String name;
+ @ManyToMany
+ private Set<Segment> Segment;
  public String getUsername() {
 	return username;
 }

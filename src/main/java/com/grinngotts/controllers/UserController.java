@@ -18,7 +18,8 @@ import com.grinngotts.service.UserService;
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin
-public class UserController {
+public class UserController {	
+	
 //@Autowired
  UserService service = new UserService();
  

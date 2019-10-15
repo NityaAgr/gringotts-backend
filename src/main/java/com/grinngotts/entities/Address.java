@@ -1,9 +1,7 @@
 package com.grinngotts.entities;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -11,14 +9,14 @@ import javax.persistence.Table;
 **/
 @Entity
 @Table(name = "segment")
-public class Segment {
+
+public class Address {
 	@Id
-	private Integer segment_id;
+	private Integer address_id;
 	
 	@Column(nullable = false)
 	private String name;
 	
-	@ManyToMany(mappedBy = "segments")
 	public String getName() {
 		return name;
 	}
