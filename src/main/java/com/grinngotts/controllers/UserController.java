@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grinngotts.dto.UserDTO;
 import com.grinngotts.service.UserService;
+import com.grinngotts.service.UserServiceImpl;
 
 /**
 * /controllers/UserController.java
@@ -18,14 +19,14 @@ import com.grinngotts.service.UserService;
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin
-public class UserController {	
-	
+public class UserController {
+
 //@Autowired
- UserService service = new UserService();
+ UserService service = new UserServiceImpl();
  
  @RequestMapping(value="{username}/login", method=RequestMethod.GET, produces="application/json" )
  public ResponseEntity<UserDTO> logIn(@PathVariable String username) {
-  UserDTO user = service.getUserByUsername(username);
+  UserDTO user = service.findByUsername(username);
   return new ResponseEntity<>(user, HttpStatus.OK);
  }
 }
