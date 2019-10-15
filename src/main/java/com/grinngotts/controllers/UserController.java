@@ -29,4 +29,11 @@ public class UserController {
   UserDTO user = service.findByUsername(username);
   return new ResponseEntity<>(user, HttpStatus.OK);
  }
+ 
+ @RequestMapping(value="{userid}", method=RequestMethod.GET, produces="application/json" )
+ public ResponseEntity<UserDTO> findUser(@PathVariable Integer userid) {
+  UserDTO user = service.findUserById(userid);
+  return new ResponseEntity<>(user, HttpStatus.OK);
+ }
+ 
 }

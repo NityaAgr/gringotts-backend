@@ -5,7 +5,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.grinngotts.dao.IUserDAO;
-import com.grinngotts.dao.UserDAO;
+import com.grinngotts.dto.ApiDTOBuilder;
+import com.grinngotts.dto.UserDTO;
 import com.grinngotts.entities.User;
 
 import java.util.HashSet;
@@ -13,33 +14,25 @@ import java.util.HashSet;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDAO userRepository;
-    @Autowired
-    private IUserDAO roleRepository;
+    private IUserDAO userRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
 
     @Override
     public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRoles(new HashSet<>(roleRepository.findAll()));
-        userRepository.save(user);
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        user.setRoles(new HashSet<>(roleRepository.findAll()));
+//        userRepository.save(user);
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public UserDTO findByUsername(String username) {
+        return ApiDTOBuilder.userToUserDTO(userRepository.getUser(username));
     }
-
-	@Override
-	public void save(User user) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public User findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    
+    @Override
+    public UserDTO findUserById(Integer userid) {
+        return ApiDTOBuilder.userToUserDTO(userRepository.getUser(Integer.toString(userid)));
+    }
 }

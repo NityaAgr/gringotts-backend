@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import ch.qos.logback.classic.Logger;
 
-public class SecurityServiceImpl {
+public class SecurityServiceImpl implements SecurityService{
 
 	@Autowired
     private AuthenticationManager authenticationManager;
@@ -19,7 +19,7 @@ public class SecurityServiceImpl {
     private UserDetailsService userDetailsService;
     
 
-    private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
+//    private static final Logger logger = LoggerFactory.logger(SecurityServiceImpl.class);
 
      @Override
     public String findLoggedInUsername() {
@@ -40,7 +40,7 @@ public class SecurityServiceImpl {
 
         if (usernamePasswordAuthenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-            logger.debug(String.format("Auto login %s successfully!", username));
+//            logger.debug(String.format("Auto login %s successfully!", username));
         }
     }
 }

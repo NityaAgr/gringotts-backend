@@ -19,20 +19,20 @@ import com.grinngotts.entities.Segment;
 * /service/ApiDTOBuilder.java
 **/
 @Component
-public class UserDetailsServiceImpl implements IUserService {
+public class UserDetailsServiceImpl {
 @Autowired
  private IUserDAO userDAO;
  
- @Override
- public UserDTO getUserByUsername(String username) {
-  User user = (User) userDAO.getUser(username); 
-  if (user == null) throw new UsernameNotFoundException(username);
-
-  Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-  for (Segment segment : user.getSegment()){
-      grantedAuthorities.add(new SimpleGrantedAuthority(segment.getName()));
-  }
-  
-  return ApiDTOBuilder.userToUserDTO((com.grinngotts.entities.User) user);
- }
+// @Override
+// public UserDTO getUserByUsername(String username) {
+//  User user = (User) userDAO.getUser(username); 
+//  if (user == null) throw new UsernameNotFoundException(username);
+//
+//  Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+//  for (Segment segment : user.getSegment()){
+//      grantedAuthorities.add(new SimpleGrantedAuthority(segment.getName()));
+//  }
+//  
+//  return ApiDTOBuilder.userToUserDTO((com.grinngotts.entities.User) user);
+// }
 }
